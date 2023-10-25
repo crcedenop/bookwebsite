@@ -1,0 +1,14 @@
+language: bash
+install: bash install.sh
+script: STATUS=$(curl -I localhost &> /dev/stderr --write-out "%{http_code}") | if
+  test $STATUS 200; then exit 0; fi
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  keep_history: true
+  on:
+    branch: main
+env:
+  global:
+    secure: fBHp7Fkpn/khn5lXCAqEp3QhPmYe+zBEWFWNR3L5Bk9/tdhIjVX7E19yHfT0laKXZpEynonx9qQ4zd/9/6s5Sti8XbpotlFhCo4A4tF21/rZJKJ8f6RZhm1vzeA2AQFlpgSbogN+ZMzT0tYXq/jLoFOIcR3X2hYEKiGXo3rYhYnOfcHc/gBiMXIMO6lOFLIjrKZz7s56iMLNu17O7g5V2HYpqtXthe0idzQry3DZJjQ1FarWSzjtuWwMR2Olbt63Q5YA+r4iHDvtZphnhgUnNT/4jDcGYAaNSTA2B84gpvA/iSOgc1z6Qdh+6MLUoyQko4GNVrNW1Nd8b40J35mUnT8UFoKDHIKxFxRjl6fPQpHRG+iuXj0EEsva4LLpWpqCpCViht+j4mKPKu5jejoy+jPP04s7c2zgT+87i2eyVW6MXfhkhptZqU/N/BwvWbBr2JhavMHYoSA0iksldDG+x4TqhMOBwQD6dMV1AUvbYcHrJaUhjlcBAHtpaesk93jQQqHVdC3O1024zo4yvjxk7/NcqqvdOPcMZaUM/4YKnkAvF9LRNxRDRnX+DXCgWn72ROqnq/nDONCNbXeMvOl8zDq1PGaqgUnXuLhViJ2iFuMqhLAXTrdjI3/cLIrXQS6ptqQlNCDP4zYD+8GCeZrk8vU5/XZXFb/Br5y3/cUBdyc=
